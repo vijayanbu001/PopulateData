@@ -23,7 +23,7 @@ const App = StackNavigator(
     cardStyle: {
       paddingTop: Platform.OS === "ios" ? 0 : StatusBar.currentHeight
     }
-    }
+  }
 );
 
 export default App;
