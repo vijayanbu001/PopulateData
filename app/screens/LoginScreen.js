@@ -41,13 +41,30 @@ class LoginScreen extends Component {
     const { navigate } = this.props.navigation;
     const { goBack } = this.props.navigation;
     handleButtonPress = () => {
-      if (this.state.username == this.state.password) navigate("home");
-      else
+      if (this.state.username.trim() == "") {
         Toast.show({
-          text: "Wrong password!",
+          text: "Please Enter Username!",
           position: "bottom",
           buttonText: "Okay"
         });
+      } else {
+        if (this.state.password.trim() == "") {
+          Toast.show({
+            text: "Please Enter password!",
+            position: "bottom",
+            buttonText: "Okay"
+          });
+        } else {
+          if (this.state.username == this.state.password) navigate("home");
+          else{
+            Toast.show({
+              text: "Wrong password!",
+              position: "bottom",
+              buttonText: "Okay"
+            });
+          }
+        }
+      }
     };
     BackHandler.addEventListener("hardwareBackPress", function() {
       // Typically you would use the navigator here to go to the last state.
@@ -87,6 +104,7 @@ class LoginScreen extends Component {
             <Button block onPress={handleButtonPress}>
               <Text> Sign in </Text>
             </Button>
+            <Text> use same username and password</Text>
           </Form>
         </Content>
       </Container>
